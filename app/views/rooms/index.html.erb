@@ -1,0 +1,11 @@
+<h1>WawaChat</h1>
+
+<ul>
+  <% @rooms.each do |room| %>
+    <li>
+      <a href="/rooms/<%= room.id %>">
+        <%= room.name %>
+      </a>
+    </li>
+  <% end %>
+<li>
