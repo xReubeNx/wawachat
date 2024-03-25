@@ -1,6 +1,10 @@
 class Message < ApplicationRecord
-  validates :message, presence: true
+  validates :text, presence: true
 
-  belongs_to :user_id
-  belongs_to :room_id
+  belongs_to :user
+  belongs_to :room, dependent: :destroy
+
+  scope :in_room, -> (id) { where(room_id: id) }
+
+  after_create_commit { broadcast_append_to "messages" }
 end

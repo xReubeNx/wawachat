@@ -13,12 +13,12 @@
 ActiveRecord::Schema[7.1].define(version: 2024_03_24_101732) do
   create_table "messages", force: :cascade do |t|
     t.string "text"
-    t.integer "user_id_id", null: false
-    t.integer "room_id_id", null: false
+    t.integer "user_id", null: false
+    t.integer "room_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["room_id_id"], name: "index_messages_on_room_id_id"
-    t.index ["user_id_id"], name: "index_messages_on_user_id_id"
+    t.index ["room_id"], name: "index_messages_on_room_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
   create_table "rooms", force: :cascade do |t|
@@ -28,13 +28,13 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_24_101732) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "name"
+    t.string "username"
     t.string "password_digest"
     t.string "display_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "messages", "room_ids"
-  add_foreign_key "messages", "user_ids"
+  add_foreign_key "messages", "rooms"
+  add_foreign_key "messages", "users"
 end

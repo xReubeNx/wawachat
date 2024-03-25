@@ -1,0 +1,17 @@
+<div class="flex flex-col items-center">
+  <div class="text-2xl">Log in</div>
+
+  <%= form_with url: "/login", html: {class: "flex flex-col w-full items-center my-16"}, method: :post do |form| %>
+    <%= form.label "username" %>
+    <%= form.text_field :username %>
+
+    <%= form.label "password" %>
+    <%= form.password_field :password %>
+
+    <div class="bg-white border border-black m-2 p-2">
+      <%= form.submit "Log in" %>
+    </div>
+  <% end %>
+
+  <span>Don't have an account? <a href="/signup" class="underline">Create account</a></span>
+</div>

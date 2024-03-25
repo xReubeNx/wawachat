@@ -1,1 +1,23 @@
-<h1><%= @room.name %></h1>
+<div class="flex flex-col h-full">
+  <div class="flex w-full items-center justify-self-start mb-auto">
+    <a href="/" class="ml-6 absolute text-sm underline">back</a>
+    <h1 class="text-2xl underline p-2 w-full text-center"><%= @room.name %></h1>
+  </div>
+
+  <%= turbo_stream_from "messages" %>
+
+  <div id="messages" class="overflow-scroll">
+    <% @messages.in_room(@room.id).each do |message| %>
+      <%= render "messages/message", message: message %>
+    <% end %>
+  </div>
+
+
+  <div class="p-2 mt-4">
+    <%= form_with url: "/messages", method: :post do |form| %>
+      <%= form.text_field :text %>
+      <%= form.hidden_field :room_id, value: @room.id %>
+      <%= form.submit "Send" %>
+    <% end %>
+  </div>
+</div>

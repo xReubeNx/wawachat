@@ -1,11 +1,18 @@
-<h1>WawaChat</h1>
+<div class="flex flex-col h-full">
+  <h1 class="text-2xl underline p-2 w-full text-center">Rooms</h1>
 
-<ul>
-  <% @rooms.each do |room| %>
-    <li>
-      <a href="/rooms/<%= room.id %>">
-        <%= room.name %>
-      </a>
-    </li>
-  <% end %>
-<li>
+  <%= turbo_stream_from "rooms" %>
+
+  <div id="rooms" class="overflow-scroll">
+    <% @rooms.each do |room| %>
+      <%= render "rooms/room", room: room %>
+    <% end %>
+  </div>
+
+  <div class="p-2 mt-auto">
+    <%= form_with url: "/rooms", method: :post do |form| %>
+      <%= form.text_field :name %>
+      <%= form.submit "Create room" %>
+    <% end %>
+  </div>
+</div>

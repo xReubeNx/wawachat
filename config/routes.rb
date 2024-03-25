@@ -5,7 +5,19 @@ Rails.application.routes.draw do
   # Can be used by load balancers and uptime monitors to verify that the app is live.
   get "up" => "rails/health#show", as: :rails_health_check
 
-  root :to => redirect('/rooms')
+  root :to => "rooms#index"
 
-  resources :rooms
+  get "/login", to: "sessions#new"
+  post "/login", to: "sessions#create"
+  get "/logout", to: "sessions#destroy"
+
+  get "/signup", to: "users#new"
+  post "/signup", to: "users#create"
+
+
+  post "/messages", to: "messages#create"
+
+  post "/rooms", to: "rooms#create"
+
+  get "/:id", to: "rooms#show"
 end
