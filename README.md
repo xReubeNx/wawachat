@@ -1,24 +1,36 @@
-# README
+# Wawachat
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a pretty basic Ruby on Rails chat app.
 
-Things you may want to cover:
+It allows users to create an account (as well as log in to existing accounts), create or join a chat room and send messages.
+These messages are persisted so the user can jump within multiple chat rooms to see all the messages. 
+The messages also update in real time (using Turbo streams).
 
-* Ruby version
+---
 
-* System dependencies
+How to Install
 
-* Configuration
+1. Clone the repo:
+``` bash
+  git clone https://github.com/xreubenx/wawachat.git
+```
 
-* Database creation
+2. Navigate to the project and installd dependencies:
+``` bash
+  cd wawachat
+  bundle install  
+```
 
-* Database initialization
+3. Set up the database:
+``` bash
+  rails db:create
+  rails db:migrate
+```
 
-* How to run the test suite
+4. Start the server:
+``` bash
+  rails server
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+5. Visit `http://localhost:3000` in your browser.
 
-* Deployment instructions
-
-* ...
